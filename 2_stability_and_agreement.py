@@ -94,22 +94,38 @@ rng = np.random.default_rng(RANDOM_STATE)
 idx = rng.choice(len(Xte_s), size=N_INSTANCES, replace=False)
 instances = Xte_s[idx]
 
-# %% STABILITY: score = ||attr(x) - attr(x')|| / ||x - x'||  (mean over small nudges, then over rows)
+# %% STABILITY: how much does the explanation move when inputs are nudged a little?
+# score = ||attr(x) - attr(x')|| / ||x - x'||   (mean over small nudges, then over rows)
+#
+# We report TWO versions:
+#   RAW        - uses each method's attributions as-is.
+#   NORMALISED - unit-scales each attribution vector first, so the comparison reflects a
+#                CHANGE IN SHAPE, not a difference in magnitude between methods. This is the
+#                FAIR cross-method number (SHAP/IG produce big values, LIME small ones, so raw
+#                magnitudes aren't directly comparable). Rank the methods by NORMALISED.
+def _unit(v):
+    n = np.linalg.norm(v)
+    return v / n if n > 1e-12 else v
+
 print("\n=== STABILITY (lower = more stable) ===")
-stability = {}
+stab_raw, stab_norm = {}, {}
 for name, fn in METHODS.items():
-    ratios = []
+    r_raw, r_norm = [], []
     for x in instances:
         base = fn(x)
+        base_u = _unit(base)
         for _ in range(N_PERTURB):
             xp = x + EPSILON * rng.standard_normal(F).astype("float32")
-            num = np.linalg.norm(fn(xp) - base)
             den = np.linalg.norm(xp - x) + 1e-12
-            ratios.append(num / den)
-    stability[name] = float(np.mean(ratios))
-    print(f"  {name:5s}: {stability[name]:.4f}")
-rank = sorted(stability, key=stability.get)
-print("  Ranking (most stable first):", " < ".join(rank))
+            ap = fn(xp)
+            r_raw.append(np.linalg.norm(ap - base) / den)
+            r_norm.append(np.linalg.norm(_unit(ap) - base_u) / den)
+    stab_raw[name]  = float(np.mean(r_raw))
+    stab_norm[name] = float(np.mean(r_norm))
+    print(f"  {name:5s}:  raw={stab_raw[name]:10.4f}   normalised={stab_norm[name]:.4f}")
+
+rank_norm = sorted(stab_norm, key=stab_norm.get)
+print("  Ranking by NORMALISED (fair, most stable first):", " < ".join(rank_norm))
 
 # %% AGREEMENT: do the methods rank features the same way? (per row, then averaged)
 print("\n=== AGREEMENT (higher = methods agree) ===")
