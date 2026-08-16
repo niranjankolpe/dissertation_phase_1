@@ -1,0 +1,8 @@
+numpy<2.0
+pandas
+scikit-learn
+scipy
+tensorflow-cpu==2.16.1
+shap
+lime
+matplotlib
