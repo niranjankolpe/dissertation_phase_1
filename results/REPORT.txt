@@ -1,0 +1,46 @@
+ACCURACY (mean over seeds)
+                            R2      RMSE_W      MAE_W
+model       featureset                               
+HistGBDT    leak_aware  0.9834  11795.7612  7886.5529
+            leaky       0.9992   2530.6654  1618.1499
+Transformer leak_aware  0.9821  12266.4373  8549.7920
+            leaky       0.9993   2425.8330  1676.5463
+
+TOP FEATURE per method
+featureset  method
+leak_aware  ICE               {'IRR (W/m2)': 3}
+            IG                {'IRR (W/m2)': 3}
+            LIME              {'IRR (W/m2)': 3}
+            PDP               {'IRR (W/m2)': 3}
+            SHAP              {'IRR (W/m2)': 3}
+leaky       ICE       {'DC Current in Amps': 3}
+            IG        {'DC Current in Amps': 3}
+            LIME      {'DC Current in Amps': 3}
+            PDP       {'DC Current in Amps': 3}
+            SHAP      {'DC Current in Amps': 3}
+
+CONCENTRATION (share of top feature)
+method        ICE     IG   LIME    PDP   SHAP
+featureset                                   
+leak_aware  0.882  0.887  0.880  0.909  0.918
+leaky       0.378  0.490  0.392  0.387  0.360
+
+GLOBAL AGREEMENT
+            spearman  top1_match  top2_overlap
+featureset                                    
+leak_aware     0.813         1.0           0.8
+leaky          0.981         1.0           1.0
+
+LOCAL AGREEMENT
+            spearman  top1_match  top2_overlap
+featureset                                    
+leak_aware     0.749       0.967         0.782
+leaky          0.841       0.726         0.826
+
+STABILITY (lower = steadier)
+method         ICE      IG    LIME    SHAP
+featureset                                
+leak_aware  0.0110  0.1765  0.1756  0.0552
+leaky       0.0227  0.1588  0.1686  0.1136
+
+Note: leak_aware has 4 features vs 8 leaky; rank metrics on 4 items are coarse.

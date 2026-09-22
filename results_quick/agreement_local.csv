@@ -1,0 +1,13 @@
+seed,featureset,pair,spearman,top1_match,top2_overlap
+0,leaky,SHAP-LIME,0.8738095238095237,0.5,0.9
+0,leaky,SHAP-IG,0.8380952380952381,0.5,0.9
+0,leaky,SHAP-ICE,0.9,0.6,0.9
+0,leaky,LIME-IG,0.9571428571428573,1.0,1.0
+0,leaky,LIME-ICE,0.9404761904761905,0.9,0.95
+0,leaky,IG-ICE,0.9238095238095239,0.9,0.95
+0,leak_aware,SHAP-LIME,0.9,1.0,0.95
+0,leak_aware,SHAP-IG,0.78,1.0,0.8
+0,leak_aware,SHAP-ICE,0.76,1.0,0.8
+0,leak_aware,LIME-IG,0.8399999999999999,1.0,0.85
+0,leak_aware,LIME-ICE,0.78,1.0,0.85
+0,leak_aware,IG-ICE,0.72,1.0,0.8
