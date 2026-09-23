@@ -1,0 +1,30 @@
+[2026-09-23_205532] Plant B (NIST Ground Array) load + profile
+Files: 365  raw rows: 525595
+Rows dropped for active fault code: 7708 (1.47%)
+Rows dropped for any null after fault filter: 23912 (4.62%)
+Rows dropped for sentinel-glitch values (e.g. -982): 15
+Final clean rows: 493960
+Date range: 2017-01-01 00:00:00-05:00 to 2017-12-31 23:59:00-05:00
+Empirical peak AC power observed (proxy for DC/AC capacity, NOT nameplate): 258.1 kW
+
+Correlation of each feature with AC Power in Watts (leakage check, same idea as Plant A):
+AC Power in Watts     1.000000
+AC Ir in Amps         0.999869
+AC Ib in Amps         0.999793
+AC Iy in Amps         0.999776
+DC Current in Amps    0.996141
+IRR (W/m2)            0.990004
+MODULE_TEMP           0.674185
+WIND_Speed            0.310966
+Amb_Temp              0.309840
+
+Column ranges:
+       MODULE_TEMP    Amb_Temp  WIND_Speed  IRR (W/m2)  DC Current in Amps  AC Ir in Amps  AC Iy in Amps  AC Ib in Amps  AC Power in Watts
+count   493960.000  493960.000  493960.000  493960.000          493960.000     493960.000     493960.000     493960.000         493960.000
+mean        16.626      14.545       1.534     158.095             138.506         50.965         51.110         51.194          41107.922
+std         14.421       9.826       1.159     252.116             220.345         80.310         80.085         80.269          65848.288
+min        -18.160     -12.820       0.008      -0.109              -4.420          0.000          0.000          0.000              0.000
+25%          6.325       7.111       0.670      -0.038               0.000          0.000          0.000          0.000              0.000
+50%         15.550      15.570       1.248       2.617               0.000          0.000          0.000          0.000              0.000
+75%         23.860      22.360       2.048     234.025             201.700         76.660         77.580         77.680          61020.000
+max         70.360      38.850      15.380    1241.000             931.000        308.000        310.800        310.700         258100.000

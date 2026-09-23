@@ -1,0 +1,29 @@
+[2026-09-23_205449] Plant B (NIST Ground Array) load + profile
+Files: 365  raw rows: 525595
+Rows dropped for active fault code: 7708 (1.47%)
+Rows dropped for any null after fault filter: 23912 (4.62%)
+Final clean rows: 493975
+Date range: 2017-01-01 00:00:00-05:00 to 2017-12-31 23:59:00-05:00
+Empirical peak AC power observed (proxy for DC/AC capacity, NOT nameplate): 258.1 kW
+
+Correlation of each feature with AC Power in Watts (leakage check, same idea as Plant A):
+AC Power in Watts     1.000000
+AC Ir in Amps         0.999840
+AC Ib in Amps         0.999764
+AC Iy in Amps         0.999748
+DC Current in Amps    0.995701
+IRR (W/m2)            0.988974
+MODULE_TEMP           0.673424
+WIND_Speed            0.310582
+Amb_Temp              0.309467
+
+Column ranges:
+       MODULE_TEMP    Amb_Temp  WIND_Speed  IRR (W/m2)  DC Current in Amps  AC Ir in Amps  AC Iy in Amps  AC Ib in Amps  AC Power in Watts
+count   493975.000  493975.000  493975.000  493975.000          493975.000     493975.000     493975.000     493975.000         493975.000
+mean        16.626      14.545       1.534     158.096             138.490         50.950         51.095         51.179          41093.297
+std         14.421       9.826       1.158     252.116             220.368         80.365         80.140         80.324          65914.040
+min        -18.160     -12.820       0.008      -0.109            -982.000       -982.000       -982.000       -982.000        -982000.000
+25%          6.325       7.111       0.670      -0.038               0.000          0.000          0.000          0.000              0.000
+50%         15.550      15.570       1.248       2.618               0.000          0.000          0.000          0.000              0.000
+75%         23.860      22.360       2.048     234.100             201.700         76.650         77.580         77.675          61020.000
+max         70.360      38.850      15.380    1241.000             931.000        308.000        310.800        310.700         258100.000

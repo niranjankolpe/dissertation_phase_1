@@ -3,3 +3,19 @@ __pycache__/
 
 .env
 temporary_output.txt
+
+# kept local-only per student's own choice (not for git)
+SKILL.md
+context_transfer.txt
+
+# NIST Plant B data - huge, reproducible via 7_load_plantB_nist.py, kept out of git
+data/
+data/onemin-Ground-2017.zip
+data/onemin-Ground-2017/
+data/plantB_nist_ground_2017.csv
+data/sample/
+
+# scratch/intermediate, not deliverables
+results_new_seeds/
+results_3seed_backup_*/
+logs/

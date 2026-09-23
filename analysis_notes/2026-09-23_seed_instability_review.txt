@@ -1,0 +1,47 @@
+[2026-09-23 20:09] Review of results/seed_instability.csv + SEED_INSTABILITY_REPORT.txt
+(output of 4_seed_instability.py, first run)
+
+WHAT THE NUMBERS SHOW
+- top1_match = 1.0 everywhere (both featuresets, all 5 methods).
+  => the #1 feature (DC Current in leaky, IRR in leak_aware) NEVER flips
+     across seeds 0/1/2. Fully stable at the top.
+- top2_overlap is NOT 1.0 almost anywhere (mostly 0.5-0.667).
+  => the #2-ranked feature (the runner-up) DOES flip across seeds, in
+     BOTH featuresets. This is the first-mover-bias-shaped signal:
+     instability shows up among near-tied/correlated features, not the
+     clear winner.
+- Spearman (whole-ranking agreement) is LOWER for leak_aware SHAP/PDP
+  (0.600) than for leaky SHAP (0.921-0.937).
+  => THIS IS THE OPPOSITE of the naive hypothesis (expected leaky, which
+     has 3 correlated AC phase currents, to be the less stable one).
+
+VERDICT: SIGNAL IS THERE BUT NOT CLEAN YET
+1. Real finding: winner never flips, runner-up does. Consistent with
+   [A]/[B]/[C] theory (arXiv 2603.22346, 2605.21492, 2601.12654) that
+   instability concentrates among near-tied/correlated features, not a
+   dominant one.
+2. Confound: leak_aware has only 4 features vs leaky's 8. Spearman/top-2
+   over 4 items is coarse (few possible values, each seed-pair swings the
+   average a lot) - this is the SAME dimensionality confound already
+   flagged in script 3's REPORT.txt. Can't yet claim "leaky is more/less
+   unstable than leak_aware" cleanly - the metric itself is not fair
+   across different feature counts.
+3. Not yet isolated: hypothesis was specifically about the 3 correlated
+   AC phase currents (Ir/Iy/Ib) scrambling among themselves. Current
+   script measures instability over ALL features, not restricted to the
+   correlated subgroup. Need a metric scoped to just {AC Ir, AC Iy, AC Ib}
+   ranks within the leaky set to test the actual mechanism, not just
+   overall top-2 overlap.
+
+RECOMMENDATION (not yet built, needs your go-ahead)
+- Add a same-count control: e.g. compare seed-stability of the 3
+  correlated AC currents' RELATIVE ranking to each other, separately from
+  the 4 weather features' relative ranking to each other. This removes
+  the 8-vs-4 confound (compares 3 items vs 3 items, or run both at equal
+  subgroup size) and directly tests the first-mover-bias mechanism.
+- Only 3 seeds so far = only 3 seed-pairs per cell = noisy. More seeds
+  would sharpen this but costs Transformer training time - your call,
+  not doing this without you deciding it's worth the compute time.
+
+STATUS: do not write this into the report yet as a finished finding.
+It's a promising direction, not a confirmed result.

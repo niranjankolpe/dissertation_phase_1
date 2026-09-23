@@ -1,0 +1,14 @@
+Cross-seed attribution instability (lower spearman/top1/top2 = more unstable)
+
+                   spearman  top1_match  top2_overlap
+featureset method                                    
+leak_aware ICE        0.867         1.0         1.000
+           IG         0.867         1.0         0.667
+           LIME       0.867         1.0         0.667
+           PDP        0.600         1.0         0.667
+           SHAP       0.600         1.0         0.667
+leaky      ICE        0.921         1.0         0.667
+           IG         0.937         1.0         0.667
+           LIME       0.937         1.0         0.667
+           PDP        0.921         1.0         0.667
+           SHAP       0.921         1.0         0.667

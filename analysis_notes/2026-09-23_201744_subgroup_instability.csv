@@ -1,0 +1,61 @@
+group,featureset,method,seed_pair,spearman,top1_of_group_match,extra_feature,coeff_of_variation
+A_correlated_leaky,leaky,ICE,0-1,-1.0,0.0,,
+A_correlated_leaky,leaky,ICE,0-2,-1.0,0.0,,
+A_correlated_leaky,leaky,ICE,1-2,1.0,1.0,,
+A_correlated_leaky,leaky,IG,0-1,-0.5,0.0,,
+A_correlated_leaky,leaky,IG,0-2,-0.5,0.0,,
+A_correlated_leaky,leaky,IG,1-2,1.0,1.0,,
+A_correlated_leaky,leaky,LIME,0-1,-1.0,0.0,,
+A_correlated_leaky,leaky,LIME,0-2,-1.0,0.0,,
+A_correlated_leaky,leaky,LIME,1-2,1.0,1.0,,
+A_correlated_leaky,leaky,PDP,0-1,-1.0,0.0,,
+A_correlated_leaky,leaky,PDP,0-2,-1.0,0.0,,
+A_correlated_leaky,leaky,PDP,1-2,1.0,1.0,,
+A_correlated_leaky,leaky,SHAP,0-1,-0.5,0.0,,
+A_correlated_leaky,leaky,SHAP,0-2,-1.0,0.0,,
+A_correlated_leaky,leaky,SHAP,1-2,0.5,1.0,,
+B_control_leak_aware,leak_aware,ICE,0-1,1.0,1.0,,
+B_control_leak_aware,leak_aware,ICE,0-2,0.5,1.0,,
+B_control_leak_aware,leak_aware,ICE,1-2,0.5,1.0,,
+B_control_leak_aware,leak_aware,IG,0-1,0.5,0.0,,
+B_control_leak_aware,leak_aware,IG,0-2,0.5,0.0,,
+B_control_leak_aware,leak_aware,IG,1-2,1.0,1.0,,
+B_control_leak_aware,leak_aware,LIME,0-1,1.0,1.0,,
+B_control_leak_aware,leak_aware,LIME,0-2,0.5,0.0,,
+B_control_leak_aware,leak_aware,LIME,1-2,0.5,0.0,,
+B_control_leak_aware,leak_aware,PDP,0-1,1.0,1.0,,
+B_control_leak_aware,leak_aware,PDP,0-2,-0.5,0.0,,
+B_control_leak_aware,leak_aware,PDP,1-2,-0.5,0.0,,
+B_control_leak_aware,leak_aware,SHAP,0-1,-0.5,0.0,,
+B_control_leak_aware,leak_aware,SHAP,0-2,1.0,1.0,,
+B_control_leak_aware,leak_aware,SHAP,1-2,-0.5,0.0,,
+A_correlated_leaky,leaky,ICE,,,,AC Ir in Amps,0.5660437120425914
+A_correlated_leaky,leaky,ICE,,,,AC Iy in Amps,0.37906386395761704
+A_correlated_leaky,leaky,ICE,,,,AC Ib in Amps,0.25788236270915943
+A_correlated_leaky,leaky,IG,,,,AC Ir in Amps,0.6057354407371058
+A_correlated_leaky,leaky,IG,,,,AC Iy in Amps,0.35838484166250845
+A_correlated_leaky,leaky,IG,,,,AC Ib in Amps,0.3261135678301878
+A_correlated_leaky,leaky,LIME,,,,AC Ir in Amps,0.6130253371474702
+A_correlated_leaky,leaky,LIME,,,,AC Iy in Amps,0.24050000900616775
+A_correlated_leaky,leaky,LIME,,,,AC Ib in Amps,0.16763840216302445
+A_correlated_leaky,leaky,PDP,,,,AC Ir in Amps,0.5767028728640596
+A_correlated_leaky,leaky,PDP,,,,AC Iy in Amps,0.3782187210001444
+A_correlated_leaky,leaky,PDP,,,,AC Ib in Amps,0.25568833196108154
+A_correlated_leaky,leaky,SHAP,,,,AC Ir in Amps,0.42597167153428367
+A_correlated_leaky,leaky,SHAP,,,,AC Iy in Amps,0.25222410375679083
+A_correlated_leaky,leaky,SHAP,,,,AC Ib in Amps,0.17229447880472565
+B_control_leak_aware,leak_aware,ICE,,,,MODULE_TEMP,0.17019595649442285
+B_control_leak_aware,leak_aware,ICE,,,,Amb_Temp,0.19164568777753693
+B_control_leak_aware,leak_aware,ICE,,,,WIND_Speed,0.2165783161469324
+B_control_leak_aware,leak_aware,IG,,,,MODULE_TEMP,0.21023284472037296
+B_control_leak_aware,leak_aware,IG,,,,Amb_Temp,0.5255718726483026
+B_control_leak_aware,leak_aware,IG,,,,WIND_Speed,0.3649139275615507
+B_control_leak_aware,leak_aware,LIME,,,,MODULE_TEMP,0.145933627628434
+B_control_leak_aware,leak_aware,LIME,,,,Amb_Temp,0.32725162157100657
+B_control_leak_aware,leak_aware,LIME,,,,WIND_Speed,0.3604620983404653
+B_control_leak_aware,leak_aware,PDP,,,,MODULE_TEMP,0.31131152699683423
+B_control_leak_aware,leak_aware,PDP,,,,Amb_Temp,0.32674985117507643
+B_control_leak_aware,leak_aware,PDP,,,,WIND_Speed,0.44087538207158755
+B_control_leak_aware,leak_aware,SHAP,,,,MODULE_TEMP,0.3894344353719252
+B_control_leak_aware,leak_aware,SHAP,,,,Amb_Temp,0.4156612811146216
+B_control_leak_aware,leak_aware,SHAP,,,,WIND_Speed,0.5368255698515064

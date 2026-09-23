@@ -1,0 +1,35 @@
+[2026-09-23 20:35] Verdict after extending to 5 seeds (0-4, 10 seed-pairs)
+
+HEADLINE: signal is now CLEAN, not just directional.
+
+RANK STABILITY (matched 3-vs-3 groups, results/importance.csv, 5 seeds):
+  Group A (correlated: AC Ir/Iy/Ib)   spearman -0.20 to -0.10, ALL 5 methods
+  Group B (control: MODULE_TEMP/Amb_Temp/WIND_Speed) spearman 0.35 to 0.80, ALL 5 methods
+  => A < B on EVERY method (ICE, IG, LIME, PDP, SHAP). 5/5 sweep.
+  top1_of_group_match: A=0.4 flat across all methods; B=0.4-1.0 (4/5 methods >= 0.6)
+  => A <= B on 4/5 methods (SHAP ties at 0.4).
+
+Also new at 5 seeds: LIME's "unanimous top feature" claim (30/30 in the
+original 3-seed REPORT.txt) is now broken - 1 of 5 seeds gives LIME's top
+feature in the leaky set as "AC Ir in Amps" instead of "DC Current in
+Amps" (see results/REPORT.txt "TOP FEATURE per method"). Concrete,
+citable instance of the effect, not just an aggregate statistic.
+
+CAVEAT STILL STANDING: magnitude coefficient-of-variation does NOT show
+a clean sweep (SHAP: A=0.288 < B=0.461, i.e. reversed). The clean effect
+is in RANK stability specifically, not raw attribution magnitude. This is
+fine to report - the theory papers (arXiv 2603.22346, 2605.21492) are
+about RANKING instability, not magnitude - but say this precisely, do not
+claim "SHAP values are more unstable" - claim "SHAP's RANKING among
+correlated features is less internally stable."
+
+VERDICT: this is now good enough to write up as a real finding, WITH the
+above precision on what is/isn't shown. Still only 5 seeds/10 pairs -
+say "n=5 seeds" explicitly in any report, do not overstate statistical
+power. No p-value/significance test run - could add one (e.g. permutation
+test on whether A's spearman distribution is below B's) if the guide asks
+for statistical rigor.
+
+NOT DONE YET: no significance test, no write-up in the actual thesis
+documents (Annexure 4 / CA3 / paper draft) - that is a separate,
+manual step, not automated here.

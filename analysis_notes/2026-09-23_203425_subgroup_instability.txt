@@ -1,0 +1,37 @@
+[2026-09-23_203425] Subgroup instability (matched 3-vs-3, removes feature-count confound)
+Source: results/importance.csv
+
+Group A = leaky: AC Ir/Iy/Ib (correlated phase currents, runners-up behind DC Current)
+Group B = leak_aware: MODULE_TEMP/Amb_Temp/WIND_Speed (control runners-up behind IRR)
+
+RANK STABILITY WITHIN GROUP (spearman + top1-of-3 match across seed pairs; lower = less stable):
+                             spearman  top1_of_group_match
+group                method                               
+A_correlated_leaky   ICE        -0.20                  0.4
+                     IG         -0.10                  0.4
+                     LIME       -0.20                  0.4
+                     PDP        -0.20                  0.4
+                     SHAP       -0.20                  0.4
+B_control_leak_aware ICE         0.80                  1.0
+                     IG          0.55                  0.6
+                     LIME        0.55                  0.6
+                     PDP         0.35                  0.6
+                     SHAP        0.35                  0.4
+
+MAGNITUDE INSTABILITY (coefficient of variation of each feature's attribution share across seeds; higher = less stable):
+group                 method
+A_correlated_leaky    ICE       0.369
+                      IG        0.423
+                      LIME      0.308
+                      PDP       0.373
+                      SHAP      0.288
+B_control_leak_aware  ICE       0.206
+                      IG        0.367
+                      LIME      0.282
+                      PDP       0.400
+                      SHAP      0.461
+
+READ: if group A spearman/top1 << group B at matched n=3, and/or A's CV >> B's CV,
+that is dimensionality-matched evidence that the correlated cluster is the source of
+instability (supports arXiv 2603.22346 / 2605.21492 extending to this Transformer).
+If A and B are close, the effect is weak/unconfirmed at n=3 seeds - say so plainly.

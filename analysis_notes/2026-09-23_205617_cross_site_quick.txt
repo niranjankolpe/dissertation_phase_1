@@ -1,0 +1,20 @@
+[2026-09-23_205617] Cross-site feasibility check (HistGBDT, row-level, no windowing)
+Plant A rows: 118865  (p99.5 power = 324851 W)
+Plant B rows: 493960  (p99.5 power = 235500 W)
+
+                     combo featureset       R2       RMSE_W  RMSE_over_p99.5cap
+                 A_in_site leak_aware 0.983407 11762.095970            0.036208
+                 A_in_site      leaky 0.999521  1998.824290            0.006153
+                 B_in_site leak_aware 0.990618  6359.966789            0.027006
+                 B_in_site      leaky 0.999923   574.933543            0.002441
+A_train_B_test (zero-shot) leak_aware 0.941845 15879.527071            0.067429
+A_train_B_test (zero-shot)      leaky 0.997626  3208.205838            0.013623
+B_train_A_test (zero-shot) leak_aware 0.884240 31027.133219            0.095512
+B_train_A_test (zero-shot)      leaky 0.961632 17862.602779            0.054987
+
+READ: R2 can go very negative on zero-shot cross-site (different capacity/
+climate/units) - that is expected and not itself a failure of the idea.
+What matters for the Section 9 extension: does the leaky/leak_aware GAP
+(in R2 or RMSE/cap) behave differently in-site vs cross-site? If leakage's
+advantage shrinks/reverses cross-site, that is the finding worth pursuing
+with the full Transformer + windowing + 5-explainer pipeline next.

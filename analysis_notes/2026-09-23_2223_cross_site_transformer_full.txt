@@ -1,0 +1,70 @@
+[2026-09-23 22:23] Full (non-quick) cross-site Transformer run - seed 0 - COMPLETE
+
+R2 by (trained_on, tested_on, featureset):
+                      leak_aware   leaky    gap (leaky - leak_aware)
+A trained -> A tested   0.9809    0.9992      +0.018  (in-site)
+A trained -> B tested   0.7755    0.9552      +0.180  (cross-site, zero-shot)
+B trained -> B tested   0.9827    0.9999      +0.017  (in-site)
+B trained -> A tested   0.8802    0.9796      +0.100  (cross-site, zero-shot)
+
+HEADLINE FINDING (confirmed with the real full-trained dissertation model,
+not a quick-mode proxy):
+1. Cross-site zero-shot transfer genuinely works: R2 0.78-0.98 with ZERO
+   retraining, across two totally different plants (different continent,
+   climate, capacity, instrumentation, sampling rate).
+2. Leakage (current features) helps in-site AND cross-site, both
+   directions - it never hurts.
+3. THE GAP IS MUCH BIGGER CROSS-SITE THAN IN-SITE. In-site, leaky only
+   adds ~0.017-0.018 R2 (both plants are already near ceiling on weather
+   alone). Cross-site, leaky adds 0.10-0.18 R2 - an order of magnitude
+   bigger effect.
+   Reasonable physical read (not yet proven, just consistent with P=V*I
+   being a site-invariant physical law while weather->power depends on
+   site-specific tilt/azimuth/aerosols/soiling/efficiency): current
+   features anchor the model in physics that transfers across sites,
+   while a pure weather-to-power mapping is more site-specific and
+   suffers more under domain shift.
+
+WHY THIS MATTERS FOR THE DISSERTATION: this directly and cleanly answers
+the open question in context_transfer.txt Section 9 ("Do NOT assume
+leakage will hurt cross-site performance; this must be an empirical
+question"). Answer, with real evidence: leakage does not hurt cross-site
+transfer - it helps MORE cross-site than in-site. That is a genuinely
+non-obvious, useful, citable finding, not an assumption.
+
+CAVEATS (be precise, do not oversell):
+- Single seed (seed 0) only so far. The DIRECTION of this result matches
+  two independent earlier checks (8_cross_site_quick.py's HistGBDT check,
+  and this same script's --quick 2-epoch smoke test) - three independent
+  confirmations of the same pattern, which is reassuring - but the exact
+  R2 numbers above are from one seed. More seeds needed before quoting
+  precise values in a paper.
+- "Zero-shot" here means the model is applied as-is with the SOURCE
+  plant's scaler/target-normalization - i.e. deployed without touching
+  target-site statistics. This is the hardest, most honest transfer
+  setting. Fine-tuning (Section 9 experiment F) would likely do better
+  still - not attempted yet.
+- No explainer/agreement analysis yet for cross-site (Section 9
+  experiment D/G) - accuracy transfer only so far.
+
+STATUS: this is now a strong, evidenced second pillar for the dissertation
+alongside Section 13-15's collinearity-attribution-instability finding.
+Two real, non-obvious, citable contributions from one extended pipeline:
+  (1) collinearity-induced explanation-rank instability generalizes from
+      trees (2026 theory papers) to this sequence Transformer, and
+  (2) leakage features are MORE valuable for cross-site transfer than for
+      in-site accuracy - a new, not-previously-stated implication for how
+      "should you avoid leaky features" gets answered differently
+      depending on whether the deployment scenario is single-site or
+      multi-site.
+
+NEXT STEPS:
+  1. More seeds (1-4 at minimum, same as Section 15) for statistical
+     confidence on the cross-site gap sizes.
+  2. Phase 2: explanation-agreement cross-site check (SHAP/LIME/IG/ICE/PDP
+     transfer, Section 9 experiment D/G) - not started.
+  3. Verify exact NIST Ground-array nameplate capacity/citation details
+     before writing into any submitted document (Section 16 note).
+  4. Write this up - two pillars now, not one. Guide conversation should
+     probably lead with this since it is the stronger, more surprising
+     result of the two.
