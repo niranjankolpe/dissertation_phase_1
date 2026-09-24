@@ -1,0 +1,34 @@
+[2026-09-24 01:17] Seed 1 added to cross-site Transformer accuracy (Pillar 2)
+- honest recheck, not just "confirmed"
+
+R2 gap (leaky - leak_aware), by combo, both seeds:
+                  seed0    seed1    mean    std
+  A->A (in-site)  0.0184   0.0164   0.0174  0.0014
+  A->B (cross)    0.1797   0.0534   0.1165  0.0893   <- big seed swing
+  B->A (cross)    0.0995   0.1243   0.1119  0.0176   <- fairly stable
+  B->B (in-site)  0.0172   0.0157   0.0164  0.0010
+
+WHAT HOLDS UP ACROSS BOTH SEEDS:
+- Direction of the pattern: cross-site gap > in-site gap, in BOTH seeds,
+  BOTH cross-site directions. Not a fluke of seed 0 alone.
+- B->A cross-site gap is fairly stable (~0.10-0.12), roughly 6-8x the
+  in-site gap size.
+
+WHAT DOES NOT HOLD UP - BE HONEST:
+- A->B cross-site gap swung from 0.18 (seed0) to 0.05 (seed1) - a 3x swing
+  on the SAME comparison, different random init only. The earlier "5-10x
+  bigger cross-site" headline number was built from seed0 alone and is
+  NOT a stable, precise estimate. Direction (bigger cross-site) still
+  likely true, but the exact multiplier is genuinely uncertain with only
+  2 seeds - could be anywhere from ~3x to ~10x depending on direction and
+  luck.
+
+REVISED HONEST CLAIM: "leakage's accuracy benefit is consistently larger
+cross-site than in-site, across both directions and both seeds tested so
+far - but the exact size of that gap is noisy and needs more seeds before
+quoting a specific multiplier." Do NOT repeat "5-10x" as a fixed number
+anymore - say "several times larger, magnitude still being pinned down."
+
+STATUS: pattern direction confirmed (2/2 seeds, 2/2 directions). Magnitude
+NOT yet precise. More seeds (2,3,4 - matching Pillar 1's 5) would narrow
+this further. Not done yet.

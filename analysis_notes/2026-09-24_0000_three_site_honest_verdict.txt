@@ -1,0 +1,80 @@
+[2026-09-24 00:00] Three-site (A=India, B=USA, C=Hong Kong) cross-site check
+- HONEST verdict, not cherry-picked
+
+DO NOT quote the "192x" ratio printed by 13_three_site_quick.py's own
+summary line - it is a mechanical artifact of two catastrophic outlier R2
+values (A->C and B->C weather-only: R2 = -44.76 and -25.97) dominating a
+mean. That statistic is misleading on its own and should not be reported
+as a headline number.
+
+WHAT ACTUALLY HAPPENED (R2 table, 3-feature weather set, 3-feature leaky
+set, all three plants):
+                leak_aware   leaky    gap
+  A -> A          0.983      0.999   +0.016   (in-site)
+  A -> B          0.948      0.989   +0.041   (cross-site)
+  A -> C         -44.76      0.956   huge     (cross-site)
+  B -> A          0.875      0.962   +0.087   (cross-site)
+  B -> B          0.988      1.000   +0.012   (in-site)
+  B -> C         -25.97      0.950   huge     (cross-site)
+  C -> A         -1.13      -0.608   +0.53    (cross-site, still bad both ways)
+  C -> B          0.079      0.390   +0.31    (cross-site, mediocre both ways)
+  C -> C          0.836      1.000   +0.164   (in-site)
+
+TWO SEPARATE THINGS ARE HAPPENING, NOT ONE CLEAN PATTERN:
+
+1. WEATHER-ONLY CAN CATASTROPHICALLY FAIL ACROSS SCALE, AND LEAKAGE FIXES
+   THAT TOO (reinforces Pillar 2, actually a SHARPER version of it):
+   A/B (large utility-scale, 230-350kWp) -> C (small rooftop, ~55kW peak)
+   in weather-only breaks completely (deeply negative R2) because the
+   model has no way to know the target's scale is ~5-10x smaller - it was
+   only ever shown weather -> big-plant-scale power. Adding current fixes
+   this almost completely (R2 jumps to 0.95-0.96) because current itself
+   scales with the specific array's electrical rating - it carries scale
+   information that raw weather alone cannot. This is a CLEARER, more
+   mechanistic version of the original Pillar 2 finding, not a weaker one
+   - now we know WHY leakage helps cross-site: it's not just "more
+   physically direct," it also anchors the output SCALE.
+
+2. TRANSFER FROM A SMALL/NOISIER SITE TO A BIG ONE DOES NOT FULLY RECOVER,
+   EVEN WITH LEAKAGE (a genuine complication, state it honestly):
+   C -> A and C -> B stay weak-to-mediocre even with current included
+   (R2 = -0.61 and 0.39) - nowhere near the 0.95-0.98 seen going the other
+   direction. Plausible reasons (not proven, just plausible): (a) Plant C
+   is structurally different - a single inverter within a 60-station
+   shared-weather-station campus, not a dedicated plant with its own
+   weather station, so its IRR correlation with power is weaker to begin
+   with (0.86 vs A/B's ~0.99) - noisier training signal to learn from;
+   (b) training on the SMALLEST, narrowest-range site and testing on much
+   bigger/wider-range sites is a harder extrapolation problem in general,
+   independent of leakage.
+
+HONEST BOTTOM LINE:
+- The MECHANISM (leakage transfers because it's physically direct AND
+  scale-informative) is well supported, arguably better supported now
+  than with 2 sites, because the 3rd site's weather-only catastrophic
+  failure makes the "why" much clearer.
+- The CLAIM "leakage gap is always bigger cross-site than in-site" does
+  NOT hold cleanly in all 6 cross-site pairs - direction and site quality/
+  comparability matter. Two of six cross-site pairs (C->A, C->B) stay weak
+  even with leakage.
+- THIS IS NOT A FAILURE OF THE FINDING - it's a more precise, more
+  defensible version of it. A guide will trust "works well when going from
+  well-instrumented sites to others, degrades when the source site is
+  noisier/smaller/structurally different, and leakage's specific benefit
+  is that it carries both physics AND scale" far more than an oversold
+  "leakage always helps cross-site, no exceptions" claim.
+
+DO NOT present the 3-site result as either "fully confirmed" or "broke the
+theory." Present it as: refined and sharpened the mechanism, added an
+honest boundary condition (source-site quality/comparability matters).
+
+CAVEATS:
+- Reduced to 3 weather features (dropped MODULE_TEMP) for fairness across
+  all 3 plants - not the same feature count as the earlier A-vs-B-only
+  4-feature results in results_cross_site*/, so don't directly compare
+  numbers across the two script's outputs without noting this.
+- HistGBDT row-level only (script 8/13 style), not yet re-verified with
+  the full windowed Transformer for the 3-site version - that would be
+  the natural next step if pursuing this further.
+- Plant C citation/DOI not yet independently verified beyond the CC0
+  license shown on the Zenodo page - same caveat pattern as Plant B.

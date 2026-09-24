@@ -1,0 +1,77 @@
+CROSS-SITE EXPLANATION TRANSFER
+
+Top feature by (featureset, train_site, explain_site, method):
+explain_site                                   A                   B
+featureset train_site method                                        
+leak_aware A          ICE             IRR (W/m2)          IRR (W/m2)
+                      IG              IRR (W/m2)          IRR (W/m2)
+                      LIME            IRR (W/m2)          IRR (W/m2)
+                      PDP             IRR (W/m2)          IRR (W/m2)
+                      SHAP            IRR (W/m2)          IRR (W/m2)
+           B          ICE             IRR (W/m2)          IRR (W/m2)
+                      IG              IRR (W/m2)          IRR (W/m2)
+                      LIME            IRR (W/m2)          IRR (W/m2)
+                      PDP             IRR (W/m2)          IRR (W/m2)
+                      SHAP            IRR (W/m2)          IRR (W/m2)
+leaky      A          ICE     DC Current in Amps  DC Current in Amps
+                      IG      DC Current in Amps  DC Current in Amps
+                      LIME    DC Current in Amps  DC Current in Amps
+                      PDP     DC Current in Amps  DC Current in Amps
+                      SHAP    DC Current in Amps  DC Current in Amps
+           B          ICE          AC Iy in Amps       AC Iy in Amps
+                      IG           AC Iy in Amps       AC Iy in Amps
+                      LIME         AC Iy in Amps       AC Iy in Amps
+                      PDP          AC Iy in Amps       AC Iy in Amps
+                      SHAP         AC Iy in Amps       AC Iy in Amps
+
+Concentration by (featureset, train_site, home/foreign, method):
+home_or_foreign               foreign   home
+featureset train_site method                
+leak_aware A          ICE       0.907  0.879
+                      IG        0.687  0.893
+                      LIME      0.686  0.895
+                      PDP       0.929  0.905
+                      SHAP      0.773  0.948
+           B          ICE       0.542  0.504
+                      IG        0.795  0.806
+                      LIME      0.582  0.743
+                      PDP       0.549  0.512
+                      SHAP      0.692  0.794
+leaky      A          ICE       0.363  0.404
+                      IG        0.479  0.587
+                      LIME      0.465  0.461
+                      PDP       0.370  0.410
+                      SHAP      0.391  0.397
+           B          ICE       0.321  0.354
+                      IG        0.350  0.358
+                      LIME      0.350  0.334
+                      PDP       0.326  0.356
+                      SHAP      0.360  0.350
+
+Agreement between explaining home data vs foreign data (SAME frozen model):
+featureset train_site method  spearman_A_vs_B_explanation  top1_match  top2_overlap
+leak_aware          A   SHAP                     0.200000         1.0           0.5
+leak_aware          A   LIME                     0.400000         1.0           0.5
+leak_aware          A     IG                     0.200000         1.0           0.5
+leak_aware          A    ICE                     0.800000         1.0           0.5
+leak_aware          A    PDP                     0.400000         1.0           0.5
+leak_aware          B   SHAP                     1.000000         1.0           1.0
+leak_aware          B   LIME                     0.800000         1.0           0.5
+leak_aware          B     IG                     0.800000         1.0           0.5
+leak_aware          B    ICE                     1.000000         1.0           1.0
+leak_aware          B    PDP                     1.000000         1.0           1.0
+     leaky          A   SHAP                     0.904762         1.0           1.0
+     leaky          A   LIME                     0.761905         1.0           1.0
+     leaky          A     IG                     0.595238         1.0           1.0
+     leaky          A    ICE                     0.904762         1.0           1.0
+     leaky          A    PDP                     0.952381         1.0           1.0
+     leaky          B   SHAP                     0.952381         1.0           0.5
+     leaky          B   LIME                     0.976190         1.0           1.0
+     leaky          B     IG                     0.928571         1.0           1.0
+     leaky          B    ICE                     1.000000         1.0           1.0
+     leaky          B    PDP                     1.000000         1.0           1.0
+
+READ: spearman close to 1 = explanation ranking barely changes when the model is
+pointed at a foreign site's data. Low spearman / top1 mismatch = the SAME model
+explains itself differently depending on which site's data it is shown - i.e.
+explanations do NOT transfer as cleanly as accuracy did.

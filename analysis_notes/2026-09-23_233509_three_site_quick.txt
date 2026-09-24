@@ -1,0 +1,24 @@
+[2026-09-23_233509] THREE-SITE cross-site quick check (HistGBDT, 3-feature weather set)
+Plants: A=Kaggle India (118865 rows), B=NIST USA (493960 rows), C=HKUST Hong Kong (131217 rows)
+
+featureset  leak_aware   leaky      gap
+train test                             
+A     A         0.9831  0.9991   0.0160
+      B         0.9481  0.9892   0.0411
+      C       -44.7642  0.9562  45.7204
+B     A         0.8748  0.9620   0.0872
+      B         0.9883  0.9999   0.0116
+      C       -25.9662  0.9503  26.9165
+C     A        -1.1345 -0.6077   0.5268
+      B         0.0787  0.3896   0.3109
+      C         0.8360  0.9999   0.1639
+
+Mean leaky-vs-leak_aware R2 gap, IN-SITE (train==test): 0.0638
+Mean leaky-vs-leak_aware R2 gap, CROSS-SITE (train!=test): 12.2671
+Ratio (cross-site gap / in-site gap): 192.17x
+
+READ: Pillar 2 claimed cross-site gap >> in-site gap on 2 sites (A,B). This is the
+3rd-site test. If the ratio above is still clearly >1 with C included (6 cross-site
+pairs now, not just 2), that is much stronger evidence this is a real pattern, not a
+coincidence of the original 2 plants. If C breaks the pattern, say so plainly - do
+NOT cherry-pick or bury a contradicting result.

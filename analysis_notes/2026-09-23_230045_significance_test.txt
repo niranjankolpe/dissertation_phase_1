@@ -1,0 +1,14 @@
+[2026-09-23_230045] Significance test: Group A (correlated) vs Group B (control) spearman
+Source: analysis_notes/2026-09-23_203425_subgroup_instability.csv
+n(A)=50  mean(A)=-0.1800  n(B)=50  mean(B)=0.5200
+
+Mann-Whitney U (H1: A stochastically LESS than B): U=777.0  p=0.00034
+Permutation test (H1: mean(A)-mean(B) <= observed, 10000 shuffles): observed diff=-0.7000  p=0.00000
+
+CAVEAT: both tests treat the 50 (5 methods x 10 seed-pairs) values per group as
+exchangeable observations, which they are NOT strictly independent (same 5 methods
+reused across all 10 seed-pairs, same 10 seed-pairs reused across all 5 methods).
+This inflates the effective sample size and can make p-values look better than they
+really are. Treat this as supporting/directional evidence, NOT a rigorous independent-
+sample test. A cleaner (but much more expensive) test would need independently trained
+seed pairs per comparison. State this limitation explicitly if quoting a p-value.

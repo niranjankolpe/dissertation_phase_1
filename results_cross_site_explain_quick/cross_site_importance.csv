@@ -1,0 +1,41 @@
+featureset,train_site,explain_site,home_or_foreign,method,top_feature,concentration
+leak_aware,A,A,home,SHAP,IRR (W/m2),0.948224094434876
+leak_aware,A,A,home,LIME,IRR (W/m2),0.8953119978296914
+leak_aware,A,A,home,IG,IRR (W/m2),0.8932055081667674
+leak_aware,A,A,home,ICE,IRR (W/m2),0.8789261423230851
+leak_aware,A,A,home,PDP,IRR (W/m2),0.9048498068399607
+leak_aware,A,B,foreign,SHAP,IRR (W/m2),0.7727401685131404
+leak_aware,A,B,foreign,LIME,IRR (W/m2),0.6860392898037274
+leak_aware,A,B,foreign,IG,IRR (W/m2),0.6872611622657772
+leak_aware,A,B,foreign,ICE,IRR (W/m2),0.9071668063586257
+leak_aware,A,B,foreign,PDP,IRR (W/m2),0.929072318037848
+leak_aware,B,A,foreign,SHAP,IRR (W/m2),0.6921513397163563
+leak_aware,B,A,foreign,LIME,IRR (W/m2),0.5818532045359498
+leak_aware,B,A,foreign,IG,IRR (W/m2),0.7952799266088985
+leak_aware,B,A,foreign,ICE,IRR (W/m2),0.5416076983541994
+leak_aware,B,A,foreign,PDP,IRR (W/m2),0.5492034495615535
+leak_aware,B,B,home,SHAP,IRR (W/m2),0.7937388023324723
+leak_aware,B,B,home,LIME,IRR (W/m2),0.7426395099771727
+leak_aware,B,B,home,IG,IRR (W/m2),0.806072693460622
+leak_aware,B,B,home,ICE,IRR (W/m2),0.5040806594182083
+leak_aware,B,B,home,PDP,IRR (W/m2),0.512311859100833
+leaky,A,A,home,SHAP,DC Current in Amps,0.397198878550483
+leaky,A,A,home,LIME,DC Current in Amps,0.4612280022753918
+leaky,A,A,home,IG,DC Current in Amps,0.5873129879409495
+leaky,A,A,home,ICE,DC Current in Amps,0.4044844845917561
+leaky,A,A,home,PDP,DC Current in Amps,0.40997937069168866
+leaky,A,B,foreign,SHAP,DC Current in Amps,0.3905821978508085
+leaky,A,B,foreign,LIME,DC Current in Amps,0.4650520890235421
+leaky,A,B,foreign,IG,DC Current in Amps,0.47940555729240686
+leaky,A,B,foreign,ICE,DC Current in Amps,0.3631326283221443
+leaky,A,B,foreign,PDP,DC Current in Amps,0.37030616202131494
+leaky,B,A,foreign,SHAP,AC Iy in Amps,0.3601926979057255
+leaky,B,A,foreign,LIME,AC Iy in Amps,0.3503173533405687
+leaky,B,A,foreign,IG,AC Iy in Amps,0.3499853489765379
+leaky,B,A,foreign,ICE,AC Iy in Amps,0.3210877381743852
+leaky,B,A,foreign,PDP,AC Iy in Amps,0.32591956790939375
+leaky,B,B,home,SHAP,AC Iy in Amps,0.35040032070707566
+leaky,B,B,home,LIME,AC Iy in Amps,0.3342467061085242
+leaky,B,B,home,IG,AC Iy in Amps,0.3577696043130434
+leaky,B,B,home,ICE,AC Iy in Amps,0.3537398549038271
+leaky,B,B,home,PDP,AC Iy in Amps,0.35615403630404374

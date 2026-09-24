@@ -1,0 +1,18 @@
+CROSS-SITE TRANSFORMER ACCURACY
+trained_on tested_on featureset  seed  zero_shot       R2       RMSE_W        MAE_W
+         A         A leak_aware     1      False 0.982889 11991.910607  8362.548828
+         A         B leak_aware     1       True 0.846267 23211.350327 19422.740234
+         B         B leak_aware     1      False 0.984210  7438.822487  3074.039062
+         B         A leak_aware     1       True 0.854489 34970.744344 24724.957031
+         A         A      leaky     1      False 0.999307  2413.757237  1556.745972
+         A         B      leaky     1       True 0.899646 18753.645832 15107.617188
+         B         B      leaky     1      False 0.999919   532.397261   279.131195
+         B         A      leaky     1       True 0.978788 13352.068903  8020.487793
+
+Pivot: R2 by (trained_on, tested_on, featureset)
+featureset            leak_aware   leaky
+trained_on tested_on                    
+A          A              0.9829  0.9993
+           B              0.8463  0.8996
+B          A              0.8545  0.9788
+           B              0.9842  0.9999

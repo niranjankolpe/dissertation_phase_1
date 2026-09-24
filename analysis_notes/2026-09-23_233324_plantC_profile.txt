@@ -1,0 +1,23 @@
+[2026-09-23_233324] Plant C (HK LSK North inverter) load + profile
+Rows before dropna/merge-tolerance filter: 139956, after: 131217, final clean: 131217
+Date range: 2021-05-04 07:00:00 to 2023-12-31 17:55:00
+Peak observed power: 55598 W
+
+Correlation with AC Power in Watts (leakage check, same idea as A/B):
+AC Power in Watts    1.000000
+AC_2 in Amps         0.999891
+AC_1 in Amps         0.999882
+AC_3 in Amps         0.999844
+IRR (W/m2)           0.861974
+Amb_Temp             0.475986
+WIND_Speed           0.035335
+
+                        TIMESTAMP  AC Power in Watts  AC_1 in Amps  AC_2 in Amps  AC_3 in Amps    Amb_Temp  WIND_Speed  IRR (W/m2)
+count                      131217         131217.000    131217.000    131217.000    131217.000  131217.000  131217.000  131217.000
+mean   2022-08-30 06:25:58.503852          17225.697        25.578        25.603        25.606      25.005       2.731     314.326
+min           2021-05-04 07:00:00              0.000         0.000         0.000         0.000       5.765       0.273       0.000
+25%           2021-12-28 16:20:00           4005.000         6.117         6.148         6.141      21.150       1.587      69.613
+50%           2022-08-27 17:05:00          12469.000        18.594        18.617        18.617      25.774       2.453     209.970
+75%           2023-05-01 12:45:00          28063.000        41.562        41.578        41.570      29.384       3.433     500.400
+max           2023-12-31 17:55:00          55598.000        80.750        80.570        80.820      39.722      74.393    3608.600
+std                           NaN          15504.999        22.620        22.607        22.600       5.716       1.764     301.538

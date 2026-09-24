@@ -1,0 +1,45 @@
+[2026-09-23 23:05] Pillar 3 CONFIRMED with full settings (not quick mode)
+
+Mean spearman (home-site explanation vs foreign-site explanation, same
+frozen model, averaged over 5 explainer methods):
+  leak_aware, trained on A (India): 0.44   <- unstable
+  leak_aware, trained on B (USA):   0.88   <- fairly stable
+  leaky,      trained on A (India): 0.86   <- stable
+  leaky,      trained on B (USA):   0.99   <- very stable
+
+THREE FINDINGS NOW CONVERGE INTO ONE STORY:
+  Pillar 1: correlated features scramble explanation RANKING across
+    training seeds (same site, same data, different random init).
+  Pillar 2: leakage features improve prediction ACCURACY more when
+    crossing sites than stayin in-site.
+  Pillar 3 (this): leakage features ALSO make the explanation RANKING far
+    more stable when the model is deployed on a foreign site's data -
+    same mechanism as Pillar 1 (physically-grounded, less ambiguous
+    signal = steadier explanation), now shown to matter across sites too,
+    not just across seeds.
+
+BONUS, NOT YET IN THE STORY BUT NOTEWORTHY: the effect is NOT symmetric.
+The India-trained weather-only model explains itself far LESS
+consistently on foreign (US) data (0.44) than the US-trained weather-only
+model does on foreign (India) data (0.88). Leakage mostly closes this gap
+(0.86 vs 0.99) but doesn't fully erase the asymmetry. This matches
+context_transfer.txt Section 9 experiment C ("reverse transfer... tests
+direction dependence instead of assuming symmetry") - direction matters,
+confirmed empirically, not assumed.
+
+Top feature never flips home vs foreign (still 1.0 top1_match everywhere)
+- it is specifically the RANKING BELOW the top feature that destabilizes,
+same qualitative pattern as Pillar 1's within-seed finding.
+
+CAVEATS:
+- Single seed (seed 0) only, same as Pillar 2. No seed-based significance
+  test for this specific result yet (Pillar 1's significance test does
+  NOT cover this - that was seed-to-seed at one site, this is home-vs-
+  foreign at one seed).
+- n_explain=150 per cell, real settings (not the earlier quick n=10 pass).
+
+THIS IS PROBABLY THE STRONGEST SINGLE RESULT OF THE SESSION - it directly
+ties Pillars 1 and 2 into one mechanism (leakage = physically unambiguous
+signal = stable in every sense: across seeds, across sites, in both
+accuracy and explanation) rather than three separate coincidental
+findings. Worth leading with this when writing up.
