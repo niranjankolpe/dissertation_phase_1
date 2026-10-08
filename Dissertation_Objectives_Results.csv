@@ -1,0 +1,55 @@
+Plant,Model,Timing,Inputs,RMSE_kW,MAE_kW,R2
+A Hassan,HistGradientBoosting,Same instant,Exogenous,12.7237,9.1261,0.9804
+A Hassan,HistGradientBoosting,Same instant,Exogenous + Electric,2.0614,1.3204,0.9995
+A Hassan,XGBoost,Same instant,Exogenous,12.9302,9.2693,0.9797
+A Hassan,XGBoost,Same instant,Exogenous + Electric,2.029,1.2941,0.9995
+A Hassan,Linear,Same instant,Exogenous,12.5271,8.6064,0.981
+A Hassan,Linear,Same instant,Exogenous + Electric,2.4645,1.6364,0.9993
+A Hassan,SVR,Same instant,Exogenous,12.7413,9.1168,0.9803
+A Hassan,SVR,Same instant,Exogenous + Electric,2.7672,1.5627,0.9991
+A Hassan,Decision Tree,Same instant,Exogenous,13.2924,9.1913,0.9786
+A Hassan,Decision Tree,Same instant,Exogenous + Electric,2.4269,1.5373,0.9993
+A Hassan,Tweedie GLM,Same instant,Exogenous,39.2435,28.9444,0.8132
+A Hassan,Tweedie GLM,Same instant,Exogenous + Electric,31.1761,23.2568,0.8821
+A Hassan,MLP,Same instant,Exogenous,12.5974,9.0107,0.9808
+A Hassan,MLP,Same instant,Exogenous + Electric,2.5292,1.6284,0.9992
+A Hassan,Random Forest,Same instant,Exogenous,12.9671,9.2802,0.9796
+A Hassan,Random Forest,Same instant,Exogenous + Electric,2.0027,1.2273,0.9995
+A Hassan,Transformer,Same instant,Exogenous,12.5216,8.9147,0.981
+A Hassan,Transformer,Same instant,Exogenous + Electric,2.17,1.372,0.9994
+B Ground,HistGradientBoosting,Same instant,Exogenous,11.6551,7.3822,0.972
+B Ground,HistGradientBoosting,Same instant,Exogenous + Electric,0.7364,0.447,0.9999
+B Ground,HistGradientBoosting,Lagged 5 min,Exogenous,21.8609,13.4962,0.9015
+B Ground,HistGradientBoosting,Lagged 5 min,Exogenous + Electric,18.853,10.1636,0.9267
+B Ground,XGBoost,Same instant,Exogenous,11.6037,7.3364,0.9722
+B Ground,XGBoost,Same instant,Exogenous + Electric,0.7263,0.4433,0.9999
+B Ground,XGBoost,Lagged 5 min,Exogenous,21.9422,13.408,0.9007
+B Ground,XGBoost,Lagged 5 min,Exogenous + Electric,19.2653,10.3884,0.9235
+B Ground,Linear,Same instant,Exogenous,14.7639,10.3758,0.9551
+B Ground,Linear,Same instant,Exogenous + Electric,0.8583,0.6218,0.9998
+B Ground,Linear,Lagged 5 min,Exogenous,23.5554,15.9142,0.8856
+B Ground,Linear,Lagged 5 min,Exogenous + Electric,18.969,10.0884,0.9258
+B Ground,SVR,Same instant,Exogenous,12.5082,7.5434,0.9677
+B Ground,SVR,Same instant,Exogenous + Electric,1.4504,0.6497,0.9996
+B Ground,SVR,Lagged 5 min,Exogenous,22.2038,13.4458,0.8983
+B Ground,SVR,Lagged 5 min,Exogenous + Electric,19.3048,9.9571,0.9231
+B Ground,Decision Tree,Same instant,Exogenous,12.5861,7.895,0.9673
+B Ground,Decision Tree,Same instant,Exogenous + Electric,0.757,0.451,0.9999
+B Ground,Decision Tree,Lagged 5 min,Exogenous,23.6852,14.3116,0.8843
+B Ground,Decision Tree,Lagged 5 min,Exogenous + Electric,22.0148,11.3846,0.9001
+B Ground,Tweedie GLM,Same instant,Exogenous,30.5438,24.807,0.8076
+B Ground,Tweedie GLM,Same instant,Exogenous + Electric,25.6058,16.0113,0.8648
+B Ground,Tweedie GLM,Lagged 5 min,Exogenous,35.5086,27.1649,0.74
+B Ground,Tweedie GLM,Lagged 5 min,Exogenous + Electric,32.4278,19.6072,0.7832
+B Ground,MLP,Same instant,Exogenous,11.9773,7.6598,0.9704
+B Ground,MLP,Same instant,Exogenous + Electric,0.801,0.5538,0.9999
+B Ground,MLP,Lagged 5 min,Exogenous,21.3476,13.1671,0.906
+B Ground,MLP,Lagged 5 min,Exogenous + Electric,18.8172,10.074,0.927
+B Ground,Random Forest,Same instant,Exogenous,12.0473,7.572,0.9701
+B Ground,Random Forest,Same instant,Exogenous + Electric,0.7146,0.4156,0.9999
+B Ground,Random Forest,Lagged 5 min,Exogenous,22.1978,13.6382,0.8984
+B Ground,Random Forest,Lagged 5 min,Exogenous + Electric,19.3051,10.1406,0.9231
+B Ground,Transformer,Same instant,Exogenous,11.2131,7.3028,0.9741
+B Ground,Transformer,Same instant,Exogenous + Electric,0.7211,0.4566,0.9999
+B Ground,Transformer,Lagged 5 min,Exogenous,21.3903,13.2115,0.9056
+B Ground,Transformer,Lagged 5 min,Exogenous + Electric,18.7373,10.1885,0.9276
